@@ -23,16 +23,21 @@ function findWord (cells) {
     btn.addEventListener('click', function() {
         let inputWordArr = [...inputWord.value];
         let wordArr = [...'булка'];
+
+        let count = 0;
         for (let i = 0; i < wordArr.length; i++) {
             if (wordArr[i] === inputWordArr[i]) {
                 cells[i].textContent = wordArr[i]
                 cells[i].classList.add('right')
-                console.log(wordArr[i])
+                count++;
             } else {
-                cells[i].textContent = '*'
+                cells[i].textContent = inputWordArr[i]
                 cells[i].classList.add('wrong')
-                console.log('*')
             }
+        }
+        
+        if (count === inputWordArr.length) {
+            setTimeout(() => alert('Вы выиграли!'), 1000)
         }
     })
 }
