@@ -4,10 +4,13 @@
     padding: 0;
 }
 
-.sectionTable {
+.wordle {
     display: flex;
-    justify-self: center;
-    margin: 20px 0;
+    flex-direction: column;
+}
+
+.sectionTable {
+    margin: 20px auto;
 }
 
 .td {
@@ -28,12 +31,16 @@
     background-color: rgb(151, 151, 151);
 }
 
+.almost {
+    background-color: hsl(37, 100%, 63%);
+}
+
 .keyboard {
     display: flex;
     flex-direction: column;
-    justify-self: center;
-    padding: 10px;
     gap: 3px;
+    margin: 0 auto;
+    padding: 10px;
     background-color: #94a3fb;
     border-radius: 12px;
     max-width: 590px;
@@ -42,9 +49,14 @@
 
 .row {
     display: flex;
-    gap: 2px;
+    gap: 3px;
     justify-content: center;
     flex-wrap: nowrap;
+}
+
+.row:nth-child(2) .key,
+.row:nth-child(3) .key {
+    padding: 5px 19.5px;
 }
 
 .key {
@@ -57,12 +69,9 @@
     cursor: pointer;
     transition: all 0.1s ease;
     font-weight: 500;
-    border: 1px solid blue;
+    border: none
 }
 
-.key2 {
-    padding: 5px 16.5px;
-}
 
 .key:hover {
     background-color: #c5cae9;
@@ -74,11 +83,16 @@
 }
 
 .delete {
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.1s ease;
     background-color: #ff6b6b !important;
     color: white;
     font-weight: bold;
     padding: 10px 36px;
-    border: 1px solid red;
+    border: none;
 }
 
 .submit {
@@ -86,7 +100,7 @@
     color: white;
     font-weight: bold;
     padding: 15px 40px;
-    border: 1px solid green;
+    border: none;
 }
 
 .delete:hover {
