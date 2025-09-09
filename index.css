@@ -27,12 +27,27 @@
     background-color: rgb(114, 204, 114);
 }
 
+.key.right {
+    background-color: rgb(114, 204, 114);
+    color: white;
+}
+
 .wrong {
     background-color: rgb(151, 151, 151);
 }
 
+.key.wrong {
+    background-color: rgb(151, 151, 151);
+    color: white;
+}
+
 .almost {
-    background-color: hsl(37, 100%, 63%);
+    background-color: rgb(255, 200, 106);
+}
+
+.key.almost {
+    background-color: rgb(255, 200, 106);
+    color: white;
 }
 
 .keyboard {
@@ -110,3 +125,10 @@
 .submit:hover {
     background-color: #45a049 !important;
 }
+
+
+
+
+
+
+

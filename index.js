@@ -6,6 +6,8 @@ let keys = document.querySelectorAll('.key');
 let deleteBtn = document.querySelector('.delete');
 let submitBtn = document.querySelector('.submit');
 
+let wordArr = [...'ветка'];
+
 let table = document.getElementById('table');
 table.classList.add('table')
 let allRow = document.querySelectorAll('tr');
@@ -40,12 +42,11 @@ function clickLetter(letter) {
             cell.textContent = letter;
             break;
         }
-        
     }
 }
 
 function keyboard() {
-    sectionKeyboard.addEventListener('click', function(event) {
+    sectionKeyboard.addEventListener('mousedown', function(event) { //mousedown для предотвращения ввода всей строки виртуальной клавиатуры
         if (event.target.classList.contains('delete')) {
             clickDelete();
         } else if (event.target.classList.contains('submit')) {
@@ -66,7 +67,6 @@ function keyboardOff() {
 keyboard()
 
 function checkWord() {
-    let wordArr = [...'ветка'];
     let userWord = '';
 
     for (let cell of cells) {
@@ -109,6 +109,8 @@ function compareLetters(word1,word2,cells) {
             cells[i].classList.add('right')
             countLetter++;
             copyWordArr[i] = null; 
+
+            colorKey(word2[i],'right')
         } 
     }
 
@@ -119,11 +121,55 @@ function compareLetters(word1,word2,cells) {
             if (letterIndex > -1) {
                 cells[i].classList.add('almost');
                 copyWordArr[letterIndex] = null;
+
+                colorKey(word2[i],'almost')
             } else {
                 cells[i].classList.add('wrong');
+
+                colorKey(word2[i],'wrong')
             }
             cells[i].textContent = word2[i];
         }
     }
     return countLetter;
 } 
+
+function colorKey(letter,color) {
+    keys.forEach(key => {
+        if (key.textContent === letter) {
+
+            let currentRight = key.classList.contains('right')
+            let currentAlmost = key.classList.contains('almost')
+
+            if (color === 'right') {
+                key.classList.remove('almost','wrong')
+                key.classList.add('right')
+                console.log(key.classList)
+            } else if (color === 'almost' && !currentRight) {
+                key.classList.remove('wrong')
+                key.classList.add('almost')
+                console.log(key.classList)
+            } else if (color === 'wrong' && !currentRight && !currentAlmost) {
+                key.classList.add('wrong')
+                console.log(key.classList)
+            }
+        }
+    })
+}
+
+/*function colorKey(cell, letter) {
+    keys.forEach(key => {
+        if (key.textContent === letter) {           
+            if (cell.classList.contains('right')) {
+                key.classList.remove('almost','wrong')
+                key.classList.add('right')
+            } else if (cell.classList.contains('almost')) {
+                key.classList.remove('wrong')
+                key.classList.add('almost')
+            } else {
+                key.classList.add('wrong')
+            }
+        }
+    })
+}*/
+
