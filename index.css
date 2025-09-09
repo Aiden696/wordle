@@ -1,16 +1,28 @@
 * {
-    box-sizing: border-box;;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+.body {
+    min-height: 100vh;
 }
 
 .wordle {
     display: flex;
     flex-direction: column;
+    max-width: 100%;
+    padding: 0 10px;
 }
 
 .sectionTable {
     margin: 20px auto;
+    max-width: 100%;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
 }
 
 .td {
@@ -28,7 +40,7 @@
 }
 
 .key.right {
-    background-color: rgb(114, 204, 114);
+    background-color: rgb(78, 175, 78);
     color: white;
 }
 
@@ -42,11 +54,11 @@
 }
 
 .almost {
-    background-color: rgb(255, 200, 106);
+    background-color: rgb(227, 159, 42);
 }
 
 .key.almost {
-    background-color: rgb(255, 200, 106);
+    background-color: rgb(227, 159, 42);
     color: white;
 }
 
@@ -56,10 +68,11 @@
     gap: 3px;
     margin: 0 auto;
     padding: 10px;
-    background-color: #94a3fb;
+    background-color: #615d5d;
     border-radius: 12px;
     max-width: 590px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    width: 100%;
 }
 
 .row {
@@ -69,24 +82,19 @@
     flex-wrap: nowrap;
 }
 
-.row:nth-child(2) .key,
-.row:nth-child(3) .key {
-    padding: 5px 19.5px;
-}
-
 .key {
     padding: 5px 10px;
     font-size: 20px;
-    min-width: 45px;
+    min-width: 28px;
     min-height: 45px;
     background-color: #e8eaf6;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.1s ease;
     font-weight: 500;
-    border: none
+    border: none;
+    flex: 1;/* Каждая клавиша займет равную долю пространства */
 }
-
 
 .key:hover {
     background-color: #c5cae9;
@@ -103,19 +111,22 @@
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.1s ease;
-    background-color: #ff6b6b !important;
-    color: white;
+    background-color: #f36a6a !important;
+    color: #2d2d2d;
     font-weight: bold;
-    padding: 10px 36px;
+    padding: 10px 20px;
     border: none;
+    flex: 1.5;/*будут в 1.5 раза шире обычных клавиш */
 }
 
 .submit {
-    background-color: #4caf50 !important;
-    color: white;
+    background-color: #71c374 !important;
+    color: #2d2d2d;
     font-weight: bold;
-    padding: 15px 40px;
+    padding: 15px 20px;
     border: none;
+    margin-top: 2px;
+    flex: 1.5;/*будут в 1.5 раза шире обычных клавиш */
 }
 
 .delete:hover {
@@ -126,9 +137,166 @@
     background-color: #45a049 !important;
 }
 
+/* Планшеты (768px - 1023px) */
+@media (max-width: 1023px) {
+    .td {
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+    }
+    
+    .key {
+        min-width: 25px;
+        min-height: 40px;
+        font-size: 18px;
+        padding: 4px 8px;
+    }
+    
+    .delete, .submit {
+        padding: 8px 15px;
+        font-size: 18px;
+    }
+}
 
+/* Большие мобильные (576px - 767px) */
+@media (max-width: 767px) {
+    .td {
+        width: 45px;
+        height: 45px;
+        font-size: 24px;
+    }
+    
+    .keyboard {
+        padding: 8px;
+        border-radius: 8px;
+    }
+    
+    .key {
+        min-width: 22px;
+        min-height: 35px;
+        font-size: 16px;
+        padding: 3px 6px;
+        border-radius: 6px;
+    }
+    
+    .delete, .submit {
+        padding: 6px 12px;
+        font-size: 16px;
+        border-radius: 6px;
+    }
+    
+    .sectionTable {
+        margin: 15px auto;
+    }
+}
 
+/* Мобильные (до 575px) */
+@media (max-width: 575px) {
+    .td {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .keyboard {
+        padding: 6px;
+        border-radius: 6px;
+    }
+    
+    .key {
+        min-width: 18px;
+        min-height: 30px;
+        font-size: 14px;
+        padding: 2px 4px;
+        border-radius: 4px;
+    }
+    
+    .delete, .submit {
+        padding: 5px 10px;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+    
+    .row {
+        gap: 2px;
+    }
+}
 
+/* Очень маленькие мобильные (до 375px) */
+@media (max-width: 375px) {
+    .td {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    .key {
+        min-width: 15px;
+        min-height: 25px;
+        font-size: 12px;
+        padding: 1px 3px;
+    }
+    
+    .delete, .submit {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+}
 
+/* Ландшафтная ориентация на мобильных */
+@media (max-height: 600px) and (orientation: landscape) {
+    .sectionTable {
+        margin: 10px auto;
+    }
+    
+    .td {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    .keyboard {
+        padding: 5px;
+        margin: 5px auto;
+    }
+}
 
+/* Большие экраны (1200px+) */
+@media (min-width: 1200px) {
+    .td {
+        width: 60px;
+        height: 60px;
+        font-size: 32px;
+    }
+    
+    .key {
+        min-width: 32px;
+        min-height: 50px;
+        font-size: 22px;
+        padding: 6px 12px;
+    }
+    
+    .keyboard {
+        max-width: 650px;
+    }
+}
 
+/* Очень большие экраны (1600px+) */
+@media (min-width: 1600px) {
+    .td {
+        width: 70px;
+        height: 70px;
+        font-size: 36px;
+    }
+    
+    .key {
+        min-width: 35px;
+        min-height: 55px;
+        font-size: 24px;
+        padding: 8px 15px;
+    }
+    
+    .keyboard {
+        max-width: 700px;
+    }
+}

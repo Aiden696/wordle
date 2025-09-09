@@ -27,7 +27,7 @@ let rows = document.querySelectorAll('tr')
 let currentRow = rows[countAttempt];
 let cells = currentRow.querySelectorAll('.td')
 
-function clickDelete() {
+function clickDelete() { //клик по клавише delete
     for (let i = cells.length - 1; i >= 0; i--) {
         if (cells[i].textContent !== '') {
             cells[i].textContent = '';
@@ -36,7 +36,7 @@ function clickDelete() {
     }
 }
 
-function clickLetter(letter) {
+function clickLetter(letter) { //клик по клавише с буквой
     for (let cell of cells) {
         if (cell.textContent === '') {
             cell.textContent = letter;
@@ -47,6 +47,7 @@ function clickLetter(letter) {
 
 function keyboard() {
     sectionKeyboard.addEventListener('mousedown', function(event) { //mousedown для предотвращения ввода всей строки виртуальной клавиатуры
+        if (!event.target.classList.contains('key')) return; //чтобы не срабатывал клик вне клавиши
         if (event.target.classList.contains('delete')) {
             clickDelete();
         } else if (event.target.classList.contains('submit')) {
@@ -57,7 +58,7 @@ function keyboard() {
     })
 }
 
-function keyboardOff() {
+function keyboardOff() { //отключение клавиатуры после завершения игры
     let keys = document.querySelectorAll(".key")
     for (let key of keys) {
         key.disabled = true;
@@ -66,7 +67,7 @@ function keyboardOff() {
 
 keyboard()
 
-function checkWord() {
+function checkWord() { //сравнение слов + итог
     let userWord = '';
 
     for (let cell of cells) {
@@ -100,11 +101,11 @@ function checkWord() {
     return
 }
 
-function compareLetters(word1,word2,cells) {
+function compareLetters(word1,word2,cells) { //сравнение букв в словах
     let countLetter = 0;
     let copyWordArr = [...word1];
 
-    for (let i = 0; i < word1.length; i++) {
+    for (let i = 0; i < word1.length; i++) { //сравнение для верной буквы
         if (word1[i] === word2[i]) {
             cells[i].classList.add('right')
             countLetter++;
@@ -114,10 +115,9 @@ function compareLetters(word1,word2,cells) {
         } 
     }
 
-    for (let i = 0; i < word1.length; i++) {
+    for (let i = 0; i < word1.length; i++) { //сравнение для буквы не на своем месте и неверной буквы
         if (word1[i] !== word2[i]) {
             let letterIndex = copyWordArr.indexOf(word2[i]);
-            console.log(letterIndex)
             if (letterIndex > -1) {
                 cells[i].classList.add('almost');
                 copyWordArr[letterIndex] = null;
@@ -134,7 +134,7 @@ function compareLetters(word1,word2,cells) {
     return countLetter;
 } 
 
-function colorKey(letter,color) {
+function colorKey(letter,color) { //цвет клавиш клавиатуры
     keys.forEach(key => {
         if (key.textContent === letter) {
 
@@ -144,14 +144,11 @@ function colorKey(letter,color) {
             if (color === 'right') {
                 key.classList.remove('almost','wrong')
                 key.classList.add('right')
-                console.log(key.classList)
             } else if (color === 'almost' && !currentRight) {
                 key.classList.remove('wrong')
                 key.classList.add('almost')
-                console.log(key.classList)
             } else if (color === 'wrong' && !currentRight && !currentAlmost) {
                 key.classList.add('wrong')
-                console.log(key.classList)
             }
         }
     })
