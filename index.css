@@ -8,6 +8,11 @@
     min-height: 100vh;
 }
 
+.title {
+    text-align: center;
+    margin: 15px 0;
+}
+
 .wordle {
     display: flex;
     flex-direction: column;
@@ -16,23 +21,30 @@
 }
 
 .sectionTable {
-    margin: 20px auto;
     max-width: 100%;
 }
 
 .table {
-    width: 100%;
-    max-width: 100%;
+    margin: 0 auto;
 }
-
+.tr {
+    display: flex;
+    gap: 3px;
+    
+}
+.tr:not(:last-child) {
+    margin-bottom: 3px;
+}
 .td {
+    /*aspect-ratio: 1/1;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
     border: 1px solid black;
     background-color: rgb(249, 249, 222);
     border-radius: 5px;
-    width: 55px;
-    height: 55px;
     text-align: center;
-    font-size: 30px;
 }
 
 .right {
@@ -54,7 +66,7 @@
 }
 
 .almost {
-    background-color: rgb(227, 159, 42);
+    background-color: rgb(255, 189, 76);
 }
 
 .key.almost {
@@ -66,13 +78,12 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
-    margin: 0 auto;
-    padding: 10px;
+    margin: 8px auto;
+    padding: 5px;
     background-color: #615d5d;
     border-radius: 12px;
-    max-width: 590px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    width: 100%;
+    
 }
 
 .row {
@@ -83,15 +94,11 @@
 }
 
 .key {
-    padding: 5px 10px;
-    font-size: 20px;
-    min-width: 28px;
-    min-height: 45px;
     background-color: #e8eaf6;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.1s ease;
-    font-weight: 500;
+    color: black;
     border: none;
     flex: 1;/* Каждая клавиша займет равную долю пространства */
 }
@@ -108,6 +115,7 @@
 .delete {
     font-size: 20px;
     font-weight: bold;
+
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.1s ease;
@@ -137,135 +145,35 @@
     background-color: #45a049 !important;
 }
 
-/* Планшеты (768px - 1023px) */
-@media (max-width: 1023px) {
-    .td {
-        width: 50px;
-        height: 50px;
-        font-size: 26px;
+@media (360px < width < 575px) {
+    .table {
+        width: 100%;
     }
-    
+
+    .td {
+        height: 90px;
+        font-size: 45px;
+    }
+
     .key {
         min-width: 25px;
         min-height: 40px;
         font-size: 18px;
-        padding: 4px 8px;
     }
-    
-    .delete, .submit {
-        padding: 8px 15px;
-        font-size: 18px;
-    }
-}
 
-/* Большие мобильные (576px - 767px) */
-@media (max-width: 767px) {
-    .td {
-        width: 45px;
-        height: 45px;
-        font-size: 24px;
-    }
-    
     .keyboard {
-        padding: 8px;
-        border-radius: 8px;
+        width: 100%;
     }
     
-    .key {
-        min-width: 22px;
-        min-height: 35px;
-        font-size: 16px;
-        padding: 3px 6px;
-        border-radius: 6px;
-    }
-    
-    .delete, .submit {
-        padding: 6px 12px;
-        font-size: 16px;
-        border-radius: 6px;
-    }
-    
-    .sectionTable {
-        margin: 15px auto;
-    }
 }
 
-/* Мобильные (до 575px) */
-@media (max-width: 575px) {
-    .td {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+@media (576px < width < 991px) {
+    .table {
+        width: 40%;
     }
-    
-    .keyboard {
-        padding: 6px;
-        border-radius: 6px;
-    }
-    
-    .key {
-        min-width: 18px;
-        min-height: 30px;
-        font-size: 14px;
-        padding: 2px 4px;
-        border-radius: 4px;
-    }
-    
-    .delete, .submit {
-        padding: 5px 10px;
-        font-size: 14px;
-        border-radius: 4px;
-    }
-    
-    .row {
-        gap: 2px;
-    }
-}
 
-/* Очень маленькие мобильные (до 375px) */
-@media (max-width: 375px) {
     .td {
-        width: 35px;
-        height: 35px;
-        font-size: 18px;
-    }
-    
-    .key {
-        min-width: 15px;
-        min-height: 25px;
-        font-size: 12px;
-        padding: 1px 3px;
-    }
-    
-    .delete, .submit {
-        padding: 4px 8px;
-        font-size: 12px;
-    }
-}
-
-/* Ландшафтная ориентация на мобильных */
-@media (max-height: 600px) and (orientation: landscape) {
-    .sectionTable {
-        margin: 10px auto;
-    }
-    
-    .td {
-        width: 35px;
-        height: 35px;
-        font-size: 18px;
-    }
-    
-    .keyboard {
-        padding: 5px;
-        margin: 5px auto;
-    }
-}
-
-/* Большие экраны (1200px+) */
-@media (min-width: 1200px) {
-    .td {
-        width: 60px;
-        height: 60px;
+        height: 50px;
         font-size: 32px;
     }
     
@@ -277,26 +185,28 @@
     }
     
     .keyboard {
-        max-width: 650px;
+        width: 500px;
     }
 }
 
-/* Очень большие экраны (1600px+) */
-@media (min-width: 1600px) {
+@media (992px < width < 1400px) {
+    .table {
+        width: 20%;
+    }
+
     .td {
-        width: 70px;
-        height: 70px;
-        font-size: 36px;
+        height: 50px;
+        font-size: 32px;
     }
     
     .key {
-        min-width: 35px;
-        min-height: 55px;
-        font-size: 24px;
-        padding: 8px 15px;
+        min-width: 32px;
+        min-height: 50px;
+        font-size: 22px;
+        padding: 6px 12px;
     }
     
     .keyboard {
-        max-width: 700px;
+        width: 600px;
     }
 }
