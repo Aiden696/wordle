@@ -153,7 +153,7 @@ function colorKey(letter,color) { //цвет клавиш клавиатуры
         }
     })
 }
-
+console.log(window.innerWidth)
 /*function colorKey(cell, letter) {
     keys.forEach(key => {
         if (key.textContent === letter) {           

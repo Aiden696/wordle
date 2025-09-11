@@ -151,7 +151,7 @@
     }
 
     .td {
-        height: 67px;
+        height: 50px;
         font-size: 45px;
     }
 
@@ -167,7 +167,7 @@
     
 }
 
-@media (576px < width < 991px) {
+@media (min-width: 576px) and (max-width: 991px) {
     .table {
         width: 40%;
     }
@@ -189,7 +189,7 @@
     }
 }
 
-@media (992px < width < 1400px) {
+@media (min-width: 992px) and (max-width: 1199px) {
     .table {
         width: 20%;
     }
@@ -211,13 +211,58 @@
     }
 }
 
-@media (1401px < width < 1400px) {
+@media (min-width: 1200px) and (max-width: 1400px) { /*my*/
     .table {
         width: 20%;
     }
 
     .td {
         height: 50px;
+        font-size: 32px;
+    }
+    
+    .key {
+        min-width: 32px;
+        min-height: 50px;
+        font-size: 22px;
+        padding: 6px 12px;
+    }
+    
+    .keyboard {
+        width: 600px;
+    }
+}
+
+
+@media (min-width: 1401px) and (max-width: 1700px) {
+    .table {
+        width: 20%;
+    }
+
+    .td {
+        height: 60px;
+        font-size: 32px;
+    }
+    
+    .key {
+        min-width: 32px;
+        min-height: 50px;
+        font-size: 22px;
+        padding: 6px 12px;
+    }
+    
+    .keyboard {
+        width: 600px;
+    }
+}
+
+@media (min-width: 1701px) {
+    .table {
+        width: 20%;
+    }
+
+    .td {
+        height: 65px;
         font-size: 32px;
     }
     
