@@ -210,3 +210,25 @@
         width: 600px;
     }
 }
+
+@media (1401px < width < 1400px) {
+    .table {
+        width: 20%;
+    }
+
+    .td {
+        height: 50px;
+        font-size: 32px;
+    }
+    
+    .key {
+        min-width: 32px;
+        min-height: 50px;
+        font-size: 22px;
+        padding: 6px 12px;
+    }
+    
+    .keyboard {
+        width: 600px;
+    }
+}
