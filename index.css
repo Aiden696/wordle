@@ -147,8 +147,8 @@
 
 
 .gameDialog {
-    width: 500px;
-    height: 250px;
+    width: 480px;
+    height: 230px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -201,13 +201,13 @@
     box-shadow: 5px 5px 3px 0 #9c9047;
 }
 
-@media (360px < width < 575px) {
+@media (min-width: 360px) and (max-width: 449px) {
     .table {
         width: 90%;
     }
 
     .td {
-        height: 50px;
+        height: 65px;
         font-size: 45px;
     }
 
@@ -220,7 +220,35 @@
     .keyboard {
         width: 100%;
     }
-    
+
+    .titleDialog {
+        font-size: 25px;
+    }
+}
+
+@media (min-width: 450px) and (max-width: 575px) {
+    .table {
+        width: 90%;
+    }
+
+    .td {
+        height: 65px;
+        font-size: 45px;
+    }
+
+    .key {
+        min-width: 25px;
+        min-height: 40px;
+        font-size: 18px;
+    }
+
+    .keyboard {
+        width: 100%;
+    }
+
+    .titleDialog {
+        font-size: 30px;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 991px) {
@@ -242,6 +270,10 @@
     
     .keyboard {
         width: 500px;
+    }
+
+        .titleDialog {
+        font-size: 35px;
     }
 }
 
