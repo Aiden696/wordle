@@ -2,9 +2,17 @@ let body = document.getElementById('body')
 let sectionTable = document.getElementById('sectionTable')
 let sectionKeyboard = document.getElementById('keyboard')
 
+/*клавиатура*/
 let keys = document.querySelectorAll('.key');
 let deleteBtn = document.querySelector('.delete');
 let submitBtn = document.querySelector('.submit');
+
+/*<dialog>*/
+let gameDialog = document.getElementById('gameDialog')
+let titleDialog = document.getElementById('titleDialog')
+let continueDialog = document.getElementById('continueDialog')
+let overGameBtn = document.getElementById('overGameBtn')
+
 
 let wordArr = [...'ветка'];
 
@@ -84,8 +92,10 @@ function checkWord() { //сравнение слов + итог
     let countLetter = compareLetters(wordArr, userWordArr, cells);
 
     if (countLetter === userWordArr.length) {
-        setTimeout(() => alert('Вы выиграли!'), 1000)
         keyboardOff()
+        gameDialog.showModal() // DIALOG
+        titleDialog.textContent = 'Вы выйграли!';
+        continueDialog.textContent = 'Следущее слово?';
     } 
 
     countAttempt++;
@@ -95,10 +105,16 @@ function checkWord() { //сравнение слов + итог
         cells = currentRow.querySelectorAll('.td')
     }
     if (countAttempt === 6) {
-        setTimeout(() => alert('Закончились попытки, попробуйте еще раз!'), 1000)
+        gameDialog.showModal() // DIALOG
+        titleDialog.textContent = 'Закончились попытки';
+        continueDialog.textContent = 'Попробовать еще раз?';
         keyboardOff()
     }
     return
+}
+
+function closeDialog() {
+    gameDialog.close();  
 }
 
 function compareLetters(word1,word2,cells) { //сравнение букв в словах

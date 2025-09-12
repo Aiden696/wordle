@@ -145,6 +145,62 @@
     background-color: #45a049 !important;
 }
 
+
+.gameDialog {
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.gameDialog::backdrop {
+  background-color: rgb(0 0 0 / 0.3);
+  backdrop-filter: blur(7px);
+}
+
+
+.dialogContent {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.titleDialog {
+    font-size: 40px;
+}
+
+.continueDialog {
+    font-size: 25px;
+}
+
+.choiceBtns {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding-top: 20px;
+}
+
+.choiceBtn {
+    width: 90px;
+    height: 50px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 15px;
+    border: none;
+    background-color: #e4d688;
+}
+
+.choiceBtn:hover {
+    background-color: #e4d375;
+    box-shadow: 5px 5px 3px 0 #9c9047;
+}
+
 @media (360px < width < 575px) {
     .table {
         width: 90%;

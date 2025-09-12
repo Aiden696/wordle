@@ -62,6 +62,18 @@
                     <button class="key submit">Отправить</button>
                 </div>
             </section>
+
+
+            <dialog id="gameDialog" class="gameDialog">
+                <div class="dialogContent">
+                    <h2 id="titleDialog" class="titleDialog"></h2>
+                    <p id="continueDialog" class="continueDialog">Хотите продолжить?</p>
+                    <div id="choiceBtns" class="choiceBtns">
+                        <button id="continueGameBtn" class="choiceBtn">Да</button>
+                        <button onclick="closeDialog()" id="overGameBtn" class="choiceBtn">Нет</button>
+                    </div>    
+                </div>    
+            </dialog>
         </main>
     
         <script src="./index.js"></script>
