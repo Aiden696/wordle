@@ -145,7 +145,6 @@
     background-color: #45a049 !important;
 }
 
-
 .gameDialog {
     width: 480px;
     height: 230px;
@@ -181,24 +180,27 @@
 
 .choiceBtns {
     display: flex;
-    justify-content: center;
     gap: 50px;
     padding-top: 20px;
 }
 
 .choiceBtn {
-    width: 90px;
+    width: 100px;
     height: 50px;
     font-size: 15px;
     font-weight: 500;
     border-radius: 15px;
-    border: none;
-    background-color: #e4d688;
+    border: 1px solid #335663;
+    background-color: #b9d7e2;
 }
 
 .choiceBtn:hover {
-    background-color: #e4d375;
-    box-shadow: 5px 5px 3px 0 #9c9047;
+    background-color: #91c5d8;
+    box-shadow: 5px 5px 3px 0 #335663;
+}
+
+.choiceBtn:focus {
+    background-color: #91c5d8;
 }
 
 @media (min-width: 360px) and (max-width: 449px) {

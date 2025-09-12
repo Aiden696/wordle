@@ -10,9 +10,9 @@ let submitBtn = document.querySelector('.submit');
 /*<dialog>*/
 let gameDialog = document.getElementById('gameDialog')
 let titleDialog = document.getElementById('titleDialog')
+let buttons = document.querySelectorAll('#choiceBtns button')
 let continueDialog = document.getElementById('continueDialog')
 let overGameBtn = document.getElementById('overGameBtn')
-
 
 let wordArr = [...'ветка'];
 
@@ -53,6 +53,49 @@ function clickLetter(letter) { //клик по клавише с буквой
     }
 }
 
+function realKeyboard() {
+    document.addEventListener('keydown', function(event) {
+        if (!gameDialog.open) {
+            if (event.key === 'Backspace') {
+                event.preventDefault();
+                clickDelete()
+                return;
+            }    
+            if (event.key.length === 1 && event.key.match(/[a-zA-Zа-яА-Я]/)) {
+                event.preventDefault();
+                clickLetter(event.key.toLowerCase())
+            }
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                checkWord();
+                return;
+            }
+        } else {
+            if (event.key === 'ArrowLeft') {
+                currentIndex = 0;
+                buttons[0].focus();
+            } else if (event.key === 'ArrowRight') {
+                currentIndex = 1;
+                buttons[1].focus();
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                gameDialog.close();
+            }
+        }
+    });
+}
+
+realKeyboard()
+
+function overGame() {
+    gameDialog.close();
+    //что будет после закрытия диалога
+}
+
+function continueGame() {
+    //что будет если продолжить игру НОВАЯ ИГРА/ПОВТОРИТЬ ПОПЫТКУ
+}
+
 function keyboard() {
     sectionKeyboard.addEventListener('mousedown', function(event) { //mousedown для предотвращения ввода всей строки виртуальной клавиатуры
         if (!event.target.classList.contains('key')) return; //чтобы не срабатывал клик вне клавиши
@@ -66,14 +109,14 @@ function keyboard() {
     })
 }
 
+keyboard()
+
 function keyboardOff() { //отключение клавиатуры после завершения игры
     let keys = document.querySelectorAll(".key")
     for (let key of keys) {
         key.disabled = true;
     }
 }
-
-keyboard()
 
 function checkWord() { //сравнение слов + итог
     let userWord = '';
@@ -111,10 +154,6 @@ function checkWord() { //сравнение слов + итог
         keyboardOff()
     }
     return
-}
-
-function closeDialog() {
-    gameDialog.close();  
 }
 
 function compareLetters(word1,word2,cells) { //сравнение букв в словах
@@ -170,19 +209,3 @@ function colorKey(letter,color) { //цвет клавиш клавиатуры
     })
 }
 console.log(window.innerWidth)
-/*function colorKey(cell, letter) {
-    keys.forEach(key => {
-        if (key.textContent === letter) {           
-            if (cell.classList.contains('right')) {
-                key.classList.remove('almost','wrong')
-                key.classList.add('right')
-            } else if (cell.classList.contains('almost')) {
-                key.classList.remove('wrong')
-                key.classList.add('almost')
-            } else {
-                key.classList.add('wrong')
-            }
-        }
-    })
-}*/
-
