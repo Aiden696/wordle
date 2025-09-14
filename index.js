@@ -14,7 +14,20 @@ let buttons = document.querySelectorAll('#choiceBtns button')
 let continueDialog = document.getElementById('continueDialog')
 let overGameBtn = document.getElementById('overGameBtn')
 
-let wordArr = [...'ветка'];
+let wordsArr = ['ветка','салют','малыш','чайка','книга','буква','валик','бетон','рогоз','кизил',
+    'байка','свеча','решка','петух','мечта'];
+    
+let wordsArrCopy = [...wordsArr]
+let usedWords = [];
+
+let randomIndex = Math.floor(Math.random() * wordsArrCopy.length)
+let randomWord = wordsArrCopy[randomIndex]
+let wordArr = [...randomWord]
+
+wordsArrCopy.splice(randomIndex,1)
+usedWords.push(randomWord)
+
+console.log(wordArr)
 
 let table = document.getElementById('table');
 table.classList.add('table')
@@ -53,7 +66,7 @@ function clickLetter(letter) { //клик по клавише с буквой
     }
 }
 
-function realKeyboard() {
+function realKeyboard() { //физическая клавиатура
     document.addEventListener('keydown', function(event) {
         if (!gameDialog.open) {
             if (event.key === 'Backspace') {
@@ -61,7 +74,7 @@ function realKeyboard() {
                 clickDelete()
                 return;
             }    
-            if (event.key.length === 1 && event.key.match(/[a-zA-Zа-яА-Я]/)) {
+            if (event.key.length === 1 && event.key.match(/[а-яА-Я]/)) {
                 event.preventDefault();
                 clickLetter(event.key.toLowerCase())
             }
@@ -71,12 +84,15 @@ function realKeyboard() {
                 return;
             }
         } else {
+            let currentIndex = 0;
             if (event.key === 'ArrowLeft') {
                 currentIndex = 0;
                 buttons[0].focus();
+                buttons[0].classList.add('choiceBtn')
             } else if (event.key === 'ArrowRight') {
                 currentIndex = 1;
                 buttons[1].focus();
+                buttons[1].classList.add('choiceBtn')
             } else if (event.key === 'Enter') {
                 event.preventDefault();
                 gameDialog.close();
@@ -87,16 +103,7 @@ function realKeyboard() {
 
 realKeyboard()
 
-function overGame() {
-    gameDialog.close();
-    //что будет после закрытия диалога
-}
-
-function continueGame() {
-    //что будет если продолжить игру НОВАЯ ИГРА/ПОВТОРИТЬ ПОПЫТКУ
-}
-
-function keyboard() {
+function keyboard() { //виртуальная клавиатура
     sectionKeyboard.addEventListener('mousedown', function(event) { //mousedown для предотвращения ввода всей строки виртуальной клавиатуры
         if (!event.target.classList.contains('key')) return; //чтобы не срабатывал клик вне клавиши
         if (event.target.classList.contains('delete')) {
@@ -118,6 +125,43 @@ function keyboardOff() { //отключение клавиатуры после 
     }
 }
 
+function overGame() {
+    gameDialog.close();
+    //что будет после закрытия диалога
+}
+
+function continueGame() {
+    //что будет если продолжить игру НОВАЯ ИГРА/ПОВТОРИТЬ ПОПЫТКУ
+    gameDialog.close();
+
+    let tds = document.querySelectorAll('.td')
+    for (let td of tds) { //сброс букв и стилей ячеек
+        td.textContent = '';
+        td.classList = 'td'  
+    }
+
+    keys.forEach(key => {
+        key.classList.remove('right', 'almost', 'wrong');
+    });
+
+    //if (countAttempt !== 0) { //сброс счетчика прошлого слова
+        countAttempt = 0; //сброс счетчика прошлого слова
+        currentRow = rows[countAttempt];
+        cells = currentRow.querySelectorAll('.td')
+    //}
+
+    let randomIndex = Math.floor(Math.random() * wordsArrCopy.length)
+    let randomWord = wordsArrCopy[randomIndex]
+    wordArr = [...randomWord]
+
+    wordsArrCopy.splice(randomIndex, 1);
+    usedWords.push(randomWord);
+
+    console.log(wordsArrCopy)
+    console.log(usedWords)
+    console.log(wordArr)
+}
+
 function checkWord() { //сравнение слов + итог
     let userWord = '';
 
@@ -135,7 +179,7 @@ function checkWord() { //сравнение слов + итог
     let countLetter = compareLetters(wordArr, userWordArr, cells);
 
     if (countLetter === userWordArr.length) {
-        keyboardOff()
+        //keyboardOff()
         gameDialog.showModal() // DIALOG
         titleDialog.textContent = 'Вы выйграли!';
         continueDialog.textContent = 'Следущее слово?';
@@ -149,9 +193,9 @@ function checkWord() { //сравнение слов + итог
     }
     if (countAttempt === 6) {
         gameDialog.showModal() // DIALOG
-        titleDialog.textContent = 'Закончились попытки';
+        titleDialog.textContent = 'Вы проиграли';
         continueDialog.textContent = 'Попробовать еще раз?';
-        keyboardOff()
+        //keyboardOff()
     }
     return
 }
@@ -208,4 +252,3 @@ function colorKey(letter,color) { //цвет клавиш клавиатуры
         }
     })
 }
-console.log(window.innerWidth)

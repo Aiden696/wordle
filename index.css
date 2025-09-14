@@ -27,14 +27,17 @@
 .table {
     margin: 0 auto;
 }
+
 .tr {
     display: flex;
     gap: 3px;
     
 }
+
 .tr:not(:last-child) {
     margin-bottom: 3px;
 }
+
 .td {
     /*aspect-ratio: 1/1;*/
     display: flex;
@@ -197,10 +200,13 @@
 .choiceBtn:hover {
     background-color: #91c5d8;
     box-shadow: 5px 5px 3px 0 #335663;
+   
 }
 
 .choiceBtn:focus {
     background-color: #91c5d8;
+    box-shadow: 5px 5px 3px 0 #335663;
+    outline: none;
 }
 
 @media (min-width: 360px) and (max-width: 449px) {
