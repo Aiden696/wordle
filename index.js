@@ -10,6 +10,7 @@ let submitBtn = document.querySelector('.submit');
 /*<dialog>*/
 let gameDialog = document.getElementById('gameDialog')
 let titleDialog = document.getElementById('titleDialog')
+let wordDialog = document.getElementById('wordDialog')
 let buttons = document.querySelectorAll('#choiceBtns button')
 let continueDialog = document.getElementById('continueDialog')
 let overGameBtn = document.getElementById('overGameBtn')
@@ -74,7 +75,7 @@ function realKeyboard() { //физическая клавиатура
                 clickDelete()
                 return;
             }    
-            if (event.key.length === 1 && event.key.match(/[а-яА-Я]/)) {
+            if (event.key.length === 1 && event.key.match(/[a-zA-Zа-яА-Я]/)) {
                 event.preventDefault();
                 clickLetter(event.key.toLowerCase())
             }
@@ -150,12 +151,13 @@ function continueGame() {
         cells = currentRow.querySelectorAll('.td')
     //}
 
-    let randomIndex = Math.floor(Math.random() * wordsArrCopy.length)
-    let randomWord = wordsArrCopy[randomIndex]
+    randomIndex = Math.floor(Math.random() * wordsArrCopy.length)
+    randomWord = wordsArrCopy[randomIndex]
     wordArr = [...randomWord]
 
     wordsArrCopy.splice(randomIndex, 1);
     usedWords.push(randomWord);
+    wordDialog.textContent = `Загаданное слово: ${randomWord}`
 
     console.log(wordsArrCopy)
     console.log(usedWords)
@@ -194,6 +196,7 @@ function checkWord() { //сравнение слов + итог
     if (countAttempt === 6) {
         gameDialog.showModal() // DIALOG
         titleDialog.textContent = 'Вы проиграли';
+        wordDialog.textContent = `Загаданное слово: ${randomWord}`
         continueDialog.textContent = 'Попробовать еще раз?';
         //keyboardOff()
     }
