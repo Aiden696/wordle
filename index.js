@@ -14,11 +14,7 @@ let buttons = document.querySelectorAll('#choiceBtns button')
 let continueDialog = document.getElementById('continueDialog')
 let overGameBtn = document.getElementById('overGameBtn')
 
-let wordsArr = ['ветка','салют','малыш','чайка','книга','буква','валик','бетон','рогоз','кизил',
-    'байка','свеча','решка','петух','мечта','акция','актер','вьюга','кабан','завод','табак','аванс',
-    'банка','ветер','вилка','дождь','жажда','зерно','образ','рамка','сосна','ткань','тайга','халат',
-    'ягода','метро','жетон','вагон','зебра','марка','уклон','юрист','мотив'];
-    
+let wordsArr = RUWORDS;
 let wordsArrCopy = [...wordsArr]
 let usedWords = [];
 
@@ -29,6 +25,8 @@ let wordArr = [...randomWord]
 wordsArrCopy.splice(randomIndex,1)
 usedWords.push(randomWord)
 
+console.log(wordsArrCopy)
+console.log(usedWords)
 console.log(wordArr)
 
 let table = document.getElementById('table');
