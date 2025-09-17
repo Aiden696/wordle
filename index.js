@@ -182,23 +182,23 @@ function checkWord() { //сравнение слов + итог
         //keyboardOff()
         gameDialog.showModal() // DIALOG
         titleDialog.textContent = 'Вы выйграли!';
+        wordDialog.textContent = `Загаданное слово: ${randomWord}`
         continueDialog.textContent = 'Следущее слово?';
-    } 
+        return;
+    }
 
     countAttempt++;
 
     if (countAttempt < 6) {
         currentRow = rows[countAttempt];
         cells = currentRow.querySelectorAll('.td')
-    }
-    if (countAttempt === 6) {
+    } else if (countAttempt === 6) {
         gameDialog.showModal() // DIALOG
         titleDialog.textContent = 'Вы проиграли';
         wordDialog.textContent = `Загаданное слово: ${randomWord}`
         continueDialog.textContent = 'Попробовать еще раз?';
         //keyboardOff()
     }
-    return
 }
 
 function compareLetters(word1,word2,cells) { //сравнение букв в словах
