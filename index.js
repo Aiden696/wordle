@@ -145,11 +145,9 @@ function continueGame() {
         key.classList.remove('right', 'almost', 'wrong');
     });
 
-    //if (countAttempt !== 0) { //сброс счетчика прошлого слова
-        countAttempt = 0; //сброс счетчика прошлого слова
-        currentRow = rows[countAttempt];
-        cells = currentRow.querySelectorAll('.td')
-    //}
+    countAttempt = 0; //сброс счетчика прошлого слова
+    currentRow = rows[countAttempt];
+    cells = currentRow.querySelectorAll('.td')
 
     randomIndex = Math.floor(Math.random() * wordsArrCopy.length)
     randomWord = wordsArrCopy[randomIndex]
