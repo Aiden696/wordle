@@ -171,6 +171,13 @@ function checkWord() { //сравнение слов + итог
 
     let userWordArr = [...userWord];
     
+    if (!wordsArrCopy.includes(userWord) && !usedWords.includes(userWord)) { //проверка наличия слова в словаре
+        alert('такого слова нет в словаре');
+        for (let cell of cells) {
+            cell.textContent = '';
+        }
+        return
+    }
     if (userWord.length < 5) {
         alert('введите 5 букв')
         return

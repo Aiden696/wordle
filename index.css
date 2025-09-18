@@ -230,7 +230,7 @@
     }
 
     .titleDialog {
-        font-size: 25px;
+        font-size: 35px;
     }
 }
 
@@ -255,7 +255,7 @@
     }
 
     .titleDialog {
-        font-size: 30px;
+        font-size: 40px;
     }
 }
 
@@ -280,8 +280,8 @@
         width: 500px;
     }
 
-        .titleDialog {
-        font-size: 35px;
+    .titleDialog {
+        font-size: 45px;
     }
 }
 
@@ -305,6 +305,10 @@
     .keyboard {
         width: 600px;
     }
+
+    .titleDialog {
+        font-size: 45px;
+    }
 }
 
 @media (min-width: 1200px) and (max-width: 1400px) { /*my*/
@@ -326,6 +330,10 @@
     
     .keyboard {
         width: 600px;
+    }
+
+    .titleDialog {
+        font-size: 45px;
     }
 }
 
@@ -350,6 +358,10 @@
     .keyboard {
         width: 600px;
     }
+
+    .titleDialog {
+        font-size: 45px;
+    }
 }
 
 @media (min-width: 1701px) {
@@ -371,5 +383,9 @@
     
     .keyboard {
         width: 600px;
+    }
+
+    .titleDialog {
+        font-size: 45px;
     }
 }
